@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.udacity.stockhawk.ui.DetailActivity">
+    <include layout="@layout/list_item_quote">
 
-</android.support.constraint.ConstraintLayout>
+    </include>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@string/historic_data"
+        android:text="@string/historic_data"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:paddingBottom="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/historic"
+        android:text="@string/there_is_no_historic_yet"
+        tools:text="@string/there_is_no_historic_yet"
+        />
+</LinearLayout>

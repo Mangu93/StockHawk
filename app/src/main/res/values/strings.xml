@@ -33,4 +33,6 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
     <string name="error_wrong_stock">Sorry, that stock quote does not exist</string>
     <string name="cd_add_stock">This button will add a stock</string>
+    <string name="historic_data">Historic data</string>
+    <string name="there_is_no_historic_yet">There is no historic yet</string>
 </resources>
