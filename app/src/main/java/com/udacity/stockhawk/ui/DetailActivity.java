@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
     Cursor cursor;
-    private static final String[] COLUMNS = {
+    public static final String[] COLUMNS = {
             Contract.Quote.TABLE_NAME + "." + Contract.Quote._ID,
             Contract.Quote.COLUMN_SYMBOL,
             Contract.Quote.COLUMN_PRICE,
@@ -51,6 +52,7 @@ public class DetailActivity extends AppCompatActivity {
                     String cursor_history = cursor.getString(Contract.Quote.POSITION_HISTORY);
                     if(!cursor_history.equals("")) {
                         historic.setText(cursor_history);
+                        historic.setMovementMethod(new ScrollingMovementMethod());
                     }
                     symbol.setText(cursor_symbol);
                     price.setText(cursor_price);
