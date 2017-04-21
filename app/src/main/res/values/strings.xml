@@ -36,4 +36,6 @@
     <string name="cd_add_stock">This button will add a stock</string>
     <string name="historic_data">Historic data</string>
     <string name="there_is_no_historic_yet">There is no historic yet</string>
+    <string name="stock_graph">Stock Graph</string>
+    <string name="loading_graph">Loading graph</string>
 </resources>
