@@ -26,6 +26,8 @@ import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onClick(String symbol) {
         Uri symbol_uri = Contract.Quote.makeUriForStock(symbol);
-        //Cursor data = getApplicationContext().getContentResolver().query(symbol_uri, DetailActivity.COLUMNS, null, null, null);
         Intent symbol_intent = new Intent(getApplicationContext(), DetailActivity.class);
         symbol_intent.setData(symbol_uri);
         startActivity(symbol_intent);
@@ -124,7 +125,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
-
+            List<String> allSymbols = adapter.getAllSymbols();
+            for (String existingSymbol: allSymbols) {
+                if(symbol.equalsIgnoreCase(existingSymbol)) {
+                    String message = getString(R.string.error_duplicate);
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
             if (networkUp()) {
                 swipeRefreshLayout.setRefreshing(true);
             } else {

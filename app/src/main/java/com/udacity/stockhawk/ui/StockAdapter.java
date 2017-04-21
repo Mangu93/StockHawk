@@ -15,6 +15,8 @@ import com.udacity.stockhawk.data.PrefUtils;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -101,7 +103,15 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
         }
         return count;
     }
-
+    public List<String> getAllSymbols() {
+        List<String> allStocks = new ArrayList<>();
+        if(cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+                allStocks.add(cursor.getString(Contract.Quote.POSITION_SYMBOL));
+            }
+        }
+        return allStocks;
+    }
 
     interface StockAdapterOnClickHandler {
         void onClick(String symbol);
