@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
+import com.udacity.stockhawk.ui.MainActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,15 +80,10 @@ public final class QuoteSyncJob {
                 Stock stock = quotes.get(symbol);
                 StockQuote quote = stock.getQuote();
                 if(quote.getPrice() == null) {
-                    Handler handler = new Handler(Looper.getMainLooper());
-
-                    handler.post(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            Toast.makeText(context, context.getString(R.string.error_wrong_stock), Toast.LENGTH_LONG).show();                        }
-                    });
-
+                    Intent broadcast = new Intent();
+                    broadcast.setAction(MainActivity.BROADCAST_ERROR_STOCK);
+                    broadcast.putExtra(Intent.EXTRA_TEXT ,context.getString(R.string.error_wrong_stock));
+                    context.sendBroadcast(broadcast);
                     break;
                 }
                 float price = quote.getPrice().floatValue();
